@@ -1,0 +1,264 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+prj_BlackJack
+</name>
+</assembly>
+<members>
+<member name="T:prj_BlackJack.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:prj_BlackJack.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:prj_BlackJack.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:prj_BlackJack.Blackjack">
+ <summary>
+ Emulates a black jack game between two different AI players.
+ </summary>
+</member>
+<member name="M:prj_BlackJack.Blackjack.#cctor">
+ <summary>
+ Static constructor.
+ Generates a list containing one of every possible card.
+ This simplified game assumes a single deck of 52 cards, one of every unique suit and rank combination.
+ </summary>
+</member>
+<member name="M:prj_BlackJack.Blackjack.Main(System.String[])">
+ <summary>
+ Main method. Constructs the object, plays the game, prints the output.
+ Don't change this method!
+ </summary>
+ <param name="args">Command line args, unused.</param>
+</member>
+<member name="T:prj_BlackJack.Card">
+ <summary>
+ Represents a single playing card, the combination of a suit (Spades, hearts, clubs, diamonds)
+ and a rank (Ace, two, three... Jack, Queen, King).
+ Any particular card is worth a number of points, according to its rank.
+ In this simplified game, an Ace is always worth 1 points.
+ A two is with 2 points, three worth 3, and so on.
+ The face cards (Jack, Queen, King) are worth 10 points.
+ </summary>
+</member>
+<member name="P:prj_BlackJack.Card.Description">
+ <summary>
+ Returns a human readable name of the card, for example "Ace of Spades", suitable for inclusion in
+ the game's console output.
+ </summary>
+ <returns>Name of the card</returns>
+</member>
+<member name="P:prj_BlackJack.Card.Points">
+ <summary>
+ Returns the number of points that this card is worth, according to its rank.
+ </summary>
+ <returns>Point value of this card.</returns>
+</member>
+<member name="T:prj_BlackJack.Deck">
+ <summary>
+ Represents a collection of playing cards that will be dealt in the game.
+ 
+ A fresh deck usually begins with the cards in an ordered sequence according to their suit and rank.
+ Before dealing cards to the players, the dealer should shuffle the deck, <see cref="T:System.Random" />
+ otherwise cards will be dealt in their original sequence.
+ 
+ During the game, the dealer deals one card at a time, removing it from the top
+ of the deck, and adding it to the player's hand.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:prj_BlackJack.Deck.mCards">
+ <summary>
+ The cards remaining to be dealt
+ </summary>
+</member>
+<member name="M:prj_BlackJack.Deck.#ctor(System.Collections.Generic.List{prj_BlackJack.Card})">
+ <summary>
+ Constructs a fresh deck with the specified cards in the given sequence
+ </summary>
+ <param name="cards">@param cards cards</param>
+</member>
+<member name="M:prj_BlackJack.Deck.Shuffle(System.Random)">
+ <summary>
+ Randomizes the sequence of the cards within the deck.
+ </summary>
+</member>
+<member name="M:prj_BlackJack.Deck.Deal">
+ <summary>
+ Draws a card from the top of the deck, so that it can be added to a player's hand.
+ </summary>
+ <returns>Dealt card</returns>
+</member>
+<member name="P:prj_BlackJack.Deck.Cards">
+ <summary>
+ Returns the list of cards in the deck, in the sequence that they are going to be dealt.
+ </summary>
+ <returns>Cards cards in the deck</returns>
+</member>
+<member name="T:prj_BlackJack.Game">
+ <summary>
+ Controller responsible for overall game loop.
+ </summary>
+</member>
+<member name="M:prj_BlackJack.Game.Play">
+ <summary>
+ Main control loop. You an imagine this routine to reflect the actions of the dealer, who
+ coordinates gameplay.
+ 
+ This simple game is played by two players.
+ The dealer is given a single fresh deck of cards, which he then shuffles.
+ Each player is dealt two cards.
+ Then each player takes their turn.
+ During their turn, a player can choose to "hit", which means they want to be dealt another card,
+ or to "stand", which means they will end their turn.
+ The player may "hit" as many times as they wish before ending their turn.
+ Once both players have taken their turn, the winner is determined.
+ The winner is the player with the greatest number of points without exceeding 21.
+ </summary>
+ <returns>Output from the game</returns>
+</member>
+<member name="T:prj_BlackJack.Hand">
+ <summary>
+ Represents the collection of cards that have been dealt to a player.
+ </summary>
+</member>
+<member name="F:prj_BlackJack.Hand.mCards">
+ <summary>
+ The cards currently held in this hand
+ </summary>
+</member>
+<member name="F:prj_BlackJack.Hand.mPlayer">
+ <summary>
+ The player to whom this hand belongs
+ </summary>
+</member>
+<member name="M:prj_BlackJack.Hand.#ctor(prj_BlackJack.Player)">
+ <summary>
+ Constructs a new hand for the specified player.
+ </summary>
+ <param name="player">The player to whom this hand belongs</param>
+</member>
+<member name="P:prj_BlackJack.Hand.Player">
+ <summary>
+ Returns the player that this hand belongs to.
+ </summary>
+ <returns>player</returns>
+</member>
+<member name="M:prj_BlackJack.Hand.AddCard(prj_BlackJack.Card)">
+ <summary>
+ Adds a card to the hand
+ </summary>
+ <param name="card">the card to be added</param>
+</member>
+<member name="P:prj_BlackJack.Hand.TotalPoints">
+ <summary>
+ Returns the total points for this hand by adding up the points of each card.
+ </summary>
+ <returns>total points</returns>
+</member>
+<member name="M:prj_BlackJack.Hand.Beats(prj_BlackJack.Hand)">
+ <summary>
+ Determines whether this hand is better than the other player's hand.
+ In general, the winning hand is the hand with the greatest number of points.
+ But, if the hand exceeds 21 then it is a "bust" - the other player wins.
+ If both players bust, or if their total points are the same, then it is a draw.
+ </summary>
+ <param name="other">the hand to compare against</param>
+ <returns>True, if this is a better hand than the specified other hand</returns>
+</member>
+<member name="P:prj_BlackJack.Hand.Description">
+ <summary>
+ Returns a formatted description of the cards in the hand, suitable for screen output
+ </summary>
+ <returns>Description of the hand</returns>
+</member>
+<member name="T:prj_BlackJack.Player">
+ <summary>
+ Represents a player, and their decision making logic for whether to
+ "hit" or "stand"
+ </summary>
+</member>
+<member name="F:prj_BlackJack.Player.mName">
+ <summary>
+ A friendly name that identifies the player.
+ </summary>
+</member>
+<member name="F:prj_BlackJack.Player.mProbabilityCalculator">
+ <summary>
+ Used for calculating probability of bust
+ </summary>
+</member>
+<member name="M:prj_BlackJack.Player.#ctor(System.String,prj_BlackJack.ProbabilityCalculator)">
+ <summary>
+ Constructor.
+ </summary>
+ <param name="name">player's name</param>
+ <param name="probabilityCalculator">for calculating probability of bust</param>
+ <remarks></remarks>
+</member>
+<member name="P:prj_BlackJack.Player.Name">
+ <summary>
+ Returns the player's name
+ </summary>
+ <returns>name</returns>
+</member>
+<member name="M:prj_BlackJack.Player.WantsToHit(System.Int32)">
+ <summary>
+ Determines whether the player would like to "hit" (have another card dealt to their hand),
+ or "stand" (end their turn).
+ In this simple implementation, the player's strategy is to hit, so long as they are more likely
+ to increase their points than they are to bust.
+ If their current points are at 21, they should always stay
+ If their current points are at 10 or below, they can never bust, so they should always hit
+ For points in between, they will hit so long as the probability of the next draw causing a bust is less
+ than 50%.
+ </summary>
+ <param name="currentPoints">The total of the cards currently held by this player</param>
+ <remarks>True if the players wants to "hit", false if they want to "stand".</remarks>
+</member>
+<member name="T:prj_BlackJack.ProbabilityCalculator">
+ <summary>
+ Used by the player's hit/stand decision making, to determine the probability of busting if
+ they deal another card.
+ </summary>
+</member>
+<member name="F:prj_BlackJack.ProbabilityCalculator.mFullDeck">
+ <summary>
+ All possible cards
+ </summary>
+</member>
+<member name="M:prj_BlackJack.ProbabilityCalculator.CalculateProbability(System.Int32)">
+ <summary>
+ Determines the probability of a "bust" if the players deals one more card into their hand.
+ A "bust" occurs if the next card takes their total over 21.
+ 
+ The probability is simulated as follows:
+ Consider all possible cards that might be dealt next if the player chooses to "hit".
+ (Since "card counting" is a no-no in Blackjack, we imagine that *any* of the cards from a
+ normal full deck could be dealt next. ie. don't exclude cards that have already been dealt).
+ For each possibility, determine the total points that would be achieved if that card
+ were added to the player's hand, and decide whether or not it is a bust.
+ The probability of a bust is the percentage of all the combinations tried that resulted in a bust.
+ 
+ For example, if the player's current total is 12, then dealing any card worth 10 points
+ will result in a bust. Out of the 52 cards in a deck, 16 of them are worth 10 points (the Tens, Jacks,
+ Queens and Kings of Spades, Hearts, Clubs and Diamonds). So, the probability of a bust
+ is 0.3077 (30.77%), which is 16 divided by 52.
+ Similarly, if the player's current total is 19, there are 44 possible cards that will result in
+ a bust (everything except the aces and twos), and so the probability is 0.8462.
+ </summary>
+ <param name="currentPoints">the total points for the player's current hand</param>
+ <returns>probability of a bust if one more card is dealt (0.5f = 50%)</returns>
+</member>
+</members>
+</doc>

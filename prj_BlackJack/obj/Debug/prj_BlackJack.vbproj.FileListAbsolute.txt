@@ -1,0 +1,10 @@
+\\Mac\Home\Desktop\Practical Test\prj_BlackJack\obj\Debug\prj_BlackJack.Resources.resources
+\\Mac\Home\Desktop\Practical Test\prj_BlackJack\obj\Debug\prj_BlackJack.vbproj.GenerateResource.cache
+\\Mac\Home\Desktop\Practical Test\prj_BlackJack\bin\Debug\prj_BlackJack.exe.config
+\\Mac\Home\Desktop\Practical Test\prj_BlackJack\bin\Debug\prj_BlackJack.exe
+\\Mac\Home\Desktop\Practical Test\prj_BlackJack\bin\Debug\prj_BlackJack.pdb
+\\Mac\Home\Desktop\Practical Test\prj_BlackJack\bin\Debug\prj_BlackJack.xml
+\\Mac\Home\Desktop\Practical Test\prj_BlackJack\obj\Debug\prj_BlackJack.exe
+\\Mac\Home\Desktop\Practical Test\prj_BlackJack\obj\Debug\prj_BlackJack.xml
+\\Mac\Home\Desktop\Practical Test\prj_BlackJack\obj\Debug\prj_BlackJack.pdb
+\\Mac\Home\Desktop\Practical Test\prj_BlackJack\obj\Debug\prj_BlackJack.vbprojAssemblyReference.cache
